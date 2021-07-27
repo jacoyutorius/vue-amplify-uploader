@@ -5,5 +5,21 @@
       "type": "cicd",
       "lastPushTimeStamp": "2021-07-27T13:35:52.164Z"
     }
+  },
+  "auth": {
+    "vueamplifyuploader63d2e1c1": {
+      "service": "Cognito",
+      "providerPlugin": "awscloudformation",
+      "dependsOn": [],
+      "customAuth": false
+    }
+  },
+  "storage": {
+    "vueamplifyuploadere52b6008": {
+      "service": "S3",
+      "serviceType": "imported",
+      "providerPlugin": "awscloudformation",
+      "dependsOn": []
+    }
   }
 }
