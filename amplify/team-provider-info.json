@@ -1,0 +1,23 @@
+{
+    "dev": {
+        "awscloudformation": {
+            "AuthRoleName": "amplify-vueamplifyuploader-dev-223157-authRole",
+            "UnauthRoleArn": "arn:aws:iam::865422985541:role/amplify-vueamplifyuploader-dev-223157-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::865422985541:role/amplify-vueamplifyuploader-dev-223157-authRole",
+            "Region": "ap-northeast-1",
+            "DeploymentBucketName": "amplify-vueamplifyuploader-dev-223157-deployment",
+            "UnauthRoleName": "amplify-vueamplifyuploader-dev-223157-unauthRole",
+            "StackName": "amplify-vueamplifyuploader-dev-223157",
+            "StackId": "arn:aws:cloudformation:ap-northeast-1:865422985541:stack/amplify-vueamplifyuploader-dev-223157/098c4f00-eedf-11eb-a086-06acb8fccb05",
+            "AmplifyAppId": "djkpdhf0e56bq"
+        },
+        "categories": {
+            "hosting": {
+                "amplifyhosting": {
+                    "appId": "djkpdhf0e56bq",
+                    "type": "cicd"
+                }
+            }
+        }
+    }
+}
