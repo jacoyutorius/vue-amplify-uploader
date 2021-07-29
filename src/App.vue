@@ -16,8 +16,8 @@
       <div class="navbar-end">
         <div class="navbar-item">
           <div class="buttons">
-
             <div v-if="isSignedIn">
+              <button @click="modalOpen(true)" class="button is-primary">Upload</button>
               <button @click="signout" class="button is-light">Sign Out</button>
             </div>
             <div v-else>
@@ -31,16 +31,15 @@
     </div>
   </nav>
 
+  <modal-uploader
+    :active="state.modalActive"
+    @modal-open="modalOpen"
+  ></modal-uploader>
+
   <div class="container is-fluid">
     <message :message="state.message"></message>
 
     <div v-if="isSignedIn" class="columns is-multiline">
-      <div class="column">
-        <amplify-s3-image-picker
-          headerHint=""
-          handleClick="onUpload" />
-      </div>
-
       <div v-for="item in state.items" v-bind:key="item.path"  class="column">
         <card :item="item"/>
       </div>
@@ -54,11 +53,13 @@ import { Auth, Hub, Storage } from 'aws-amplify';
 import { reactive, computed } from 'vue'
 import Card from "./components/Card.vue"
 import Message from "./components/Message.vue"
+import ModalUploader from "./components/ModalUploader.vue"
 export default {
   name: 'App',
   components: {
     Card,
-    Message
+    Message,
+    ModalUploader
   },
   setup () {
     onMounted(() => {
@@ -83,7 +84,8 @@ export default {
     const state = reactive({
       user: null,
       items: new Set(),
-      message: ""
+      message: "",
+      modalActive: false
     })
     const setUser = (user) => {
       state.user = user
@@ -105,9 +107,11 @@ export default {
         lastModified: new Date(unixDate).toLocaleString("ja-JP")
       })
     }
-    const onUpload = (e) => {
-      console.log(e)
+
+    const modalOpen = open => {
+      state.modalActive = open
     }
+
     return {
       state,
       setUser,
@@ -115,7 +119,7 @@ export default {
       isSignedIn,
       signin,
       signout,
-      onUpload
+      modalOpen
     }
   }
 }
@@ -127,6 +131,10 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+  background-color: #f8f8f8;
+}
+.container {
+  padding-top: 1em;
 }
 amplify-s3-image {
   --width: 22rem;
