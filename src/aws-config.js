@@ -15,20 +15,22 @@ const isLocalhost = Boolean(
 // Assuming you have two redirect URIs, and the first is for localhost and second is for production
 const [
   localRedirectSignIn,
-  productionRedirectSignIn,
+  productionRedirectSignInAmplifyapp, // eslint-disable-line no-unused-vars
+  productionRedirectSignInJacoyutoriuscom
 ] = aws_exports.oauth.redirectSignIn.split(",");
 
 const [
   localRedirectSignOut,
-  productionRedirectSignOut,
+  productionRedirectSignOutAmplifyapp, // eslint-disable-line no-unused-vars
+  productionRedirectSignOutJacoyutoriuscom
 ] = aws_exports.oauth.redirectSignOut.split(",");
 
 const awsConfig = {
   ...aws_exports,
   oauth: {
     ...aws_exports.oauth,
-    redirectSignIn: isLocalhost ? localRedirectSignIn : productionRedirectSignIn,
-    redirectSignOut: isLocalhost ? localRedirectSignOut : productionRedirectSignOut,
+    redirectSignIn: isLocalhost ? localRedirectSignIn : productionRedirectSignInJacoyutoriuscom,
+    redirectSignOut: isLocalhost ? localRedirectSignOut : productionRedirectSignOutJacoyutoriuscom,
   }
 }
 
