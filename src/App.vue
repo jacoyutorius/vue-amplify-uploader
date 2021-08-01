@@ -96,7 +96,18 @@ export default {
     const signout = () => { Auth.signOut() }
     const getImages = () => {
       Storage.list("")
-             .then(res =>  res.forEach(item => setItem(item)))
+             .then(res => {
+                res.forEach(item => setItem(item))
+
+                const diff = res.length % 3;
+
+                // NOTE: レイアウト調整用。1列3カラムになるように空のObjectを入れておく
+                if (diff > 0) {
+                  for (let i = 0; i <= 3 - diff; i++) {
+                    setItem({});
+                  }
+                }
+             })
              .catch(e => console.error(e));
     }
     const setItem = (item) => {
