@@ -8,7 +8,9 @@
         class="navbar-burger"
         aria-label="menu"
         aria-expanded="false"
-        data-target="navbarBasicExample"
+        data-target="navbar"
+        @click="changeBurgerVisibillity"
+        v-bind:class="isActive"
       >
         <span aria-hidden="true"></span>
         <span aria-hidden="true"></span>
@@ -16,7 +18,7 @@
       </a>
     </div>
 
-    <div id="navbarBasicExample" class="navbar-menu">
+    <div id="navbar" class="navbar-menu" v-bind:class="isActive">
       <div class="navbar-end">
         <div class="navbar-item">
           <div class="buttons">
@@ -91,12 +93,15 @@ export default {
       items: new Set(),
       message: "",
       modalActive: false,
+      burgerVisibillity: false
     });
     const setUser = (user) => {
       state.user = user;
     };
     const userEmail = computed(() => state.user?.attributes?.email);
     const isSignedIn = computed(() => state.user !== null);
+    const isActive = computed(() =>  state.burgerVisibillity ? 'is-active' : '')
+
     const signin = () => {
       Auth.federatedSignIn({ provider: "Facebook" });
     };
@@ -124,14 +129,20 @@ export default {
       state.modalActive = open;
     };
 
+    const changeBurgerVisibillity = () => {
+      state.burgerVisibillity = !state.burgerVisibillity;
+    }
+
     return {
       state,
       setUser,
       userEmail,
       isSignedIn,
+      isActive,
       signin,
       signout,
       modalOpen,
+      changeBurgerVisibillity
     };
   },
 };
