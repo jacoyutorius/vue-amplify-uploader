@@ -1,7 +1,9 @@
 <template>
   <div class="card" @click="onCopy">
     <div class="card-image">
-      <amplify-s3-image :img-key="item.path"></amplify-s3-image>
+      <figure class="image is-square">
+        <img :src="publicUrl" :alt="item.path">
+      </figure>
     </div>
     <div class="card-content">
       <div class="media">

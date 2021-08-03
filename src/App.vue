@@ -40,7 +40,7 @@
     <message :message="state.message"></message>
 
     <div v-if="isSignedIn" class="columns is-multiline">
-      <div v-for="item in state.items" v-bind:key="item.path"  class="column">
+      <div v-for="item in state.items" v-bind:key="item.path" class="column is-one-quarter">
         <card :item="item"/>
       </div>
     </div>
@@ -96,18 +96,7 @@ export default {
     const signout = () => { Auth.signOut() }
     const getImages = () => {
       Storage.list("")
-             .then(res => {
-                res.forEach(item => setItem(item))
-
-                const diff = res.length % 3;
-
-                // NOTE: レイアウト調整用。1列3カラムになるように空のObjectを入れておく
-                if (diff > 0) {
-                  for (let i = 0; i <= 3 - diff; i++) {
-                    setItem({});
-                  }
-                }
-             })
+             .then(res => { res.forEach(item => setItem(item)) })
              .catch(e => console.error(e));
     }
     const setItem = (item) => {
@@ -146,9 +135,5 @@ export default {
 }
 .container {
   padding-top: 1em;
-}
-amplify-s3-image {
-  --width: 22rem;
-  --height: 22rem;
 }
 </style>
